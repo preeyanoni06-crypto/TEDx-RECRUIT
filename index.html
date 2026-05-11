@@ -259,7 +259,7 @@ select option { background: #111; }
   <div class="nav-right">
     <button class="nav-link" onclick="showView('home')">Home</button>
     <button class="nav-link" onclick="showView('admin')">Admin</button>
-    <button class="nav-cta" onclick="showView('apply')">Apply Now</button>
+    <button class="nav-cta" onclick="showView('apply')">Book Now</button>
   </div>
 </nav>
 <div class="toast" id="toast"></div>
@@ -491,11 +491,20 @@ function showView(name) {
   g('view-'+name).classList.add('active'); window.scrollTo(0,0);
   if (name==='apply') initApply();
   if (name==='admin') initAdmin();
+  // Persist view in hash so page refresh restores position
+  const p = new URLSearchParams(window.location.search);
+  if (!p.get('view')) window.location.hash = name === 'home' ? '' : name;
 }
 function routeURL() {
   const p = new URLSearchParams(window.location.search);
-  if (p.get('view')==='recruiter') { showView('recruiter'); loadRecruiterView(p.get('dept'),p.get('key')); }
-  else if (p.get('view')==='admin') showView('admin');
+  // Query-param routes take priority (recruiter links use ?view=recruiter&dept=x&key=y)
+  if (p.get('view')==='recruiter') { showView('recruiter'); loadRecruiterView(p.get('dept'),p.get('key')); return; }
+  if (p.get('view')==='admin') { showView('admin'); return; }
+  // Hash routing for normal navigation
+  const hash = window.location.hash.replace('#','');
+  if (hash === 'apply') { showView('apply'); return; }
+  if (hash === 'admin') { showView('admin'); return; }
+  showView('home');
 }
 
 // ── EMAIL LOOKUP (Path A) ──
