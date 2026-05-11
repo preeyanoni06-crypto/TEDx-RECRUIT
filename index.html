@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEDxBangkok Youth — Recruitment 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #E8001C; --red-mid: #9B0012; --red-dark: #3D0007; --red-deep: #1C0003;
+  --black: #000000; --surface: #0A0000; --white: #FFFFFF;
+  --muted: #888888; --border: rgba(232,0,28,0.22); --border-subtle: rgba(255,255,255,0.06);
+  --card-bg: rgba(20,0,3,0.85); --green: #22C55E;
+}
+*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--black); color: var(--white); min-height: 100vh; overflow-x: hidden; }
+body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; padding: 0 2rem; height: 64px; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.88); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.nav-brand { display: flex; align-items: baseline; font-family: 'Bebas Neue', sans-serif; font-size: 1.35rem; cursor: pointer; }
+.nav-brand .ted { color: var(--red); }
+.nav-brand .x { color: var(--red); font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 700; vertical-align: super; }
+.nav-brand .rest { color: var(--white); }
+.nav-right { display: flex; gap: 1.5rem; align-items: center; }
+.nav-link { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); cursor: pointer; background: none; border: none; font-family: 'DM Sans', sans-serif; font-weight: 600; transition: color 0.2s; }
+.nav-link:hover { color: var(--white); }
+.nav-cta { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; background: var(--red); color: var(--white); border: none; padding: 0.45rem 1rem; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 700; transition: background 0.2s; }
+.nav-cta:hover { background: #c5001a; }
+
+.view { display: none; min-height: 100vh; padding-top: 64px; }
+.view.active { display: block; }
+
+.btn { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.8rem 2rem; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; border: none; transition: all 0.2s; border-radius: 1px; }
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: #c5001a; transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.25); }
+.btn-outline:hover { border-color: var(--red); color: var(--red); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+.btn-ghost:hover { color: var(--white); border-color: rgba(255,255,255,0.2); }
+.btn-sm { padding: 0.45rem 0.9rem; font-size: 0.72rem; }
+.btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none !important; }
+.btn.w-full { width: 100%; justify-content: center; }
+
+/* HOME */
+.hero-wrap { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem 3rem; position: relative; min-height: calc(100vh - 64px); display: flex; flex-direction: column; justify-content: center; }
+.hero-glow { position: absolute; top: -150px; right: -80px; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle, rgba(232,0,28,0.14) 0%, transparent 68%); pointer-events: none; }
+.hero-glow-2 { position: absolute; bottom: 0; left: -200px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(232,0,28,0.06) 0%, transparent 70%); pointer-events: none; }
+.eyebrow { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; }
+.eyebrow::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--red); }
+.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem, 13vw, 10rem); line-height: 0.88; letter-spacing: 0.01em; margin-bottom: 2rem; }
+.hero-title .r { color: var(--red); display: block; }
+.hero-title .w { color: var(--white); display: block; }
+.hero-meta { display: flex; gap: 3rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.meta-label { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.25rem; }
+.meta-value { font-size: 1rem; font-weight: 600; }
+.hero-divider { height: 1px; background: var(--border); margin-bottom: 2.5rem; }
+.hero-cta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+.live-badge { display: flex; align-items: center; gap: 0.5rem; padding: 0.45rem 0.9rem; border: 1px solid var(--border); font-size: 0.72rem; color: var(--muted); }
+.pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.section { max-width: 1140px; margin: 0 auto; padding: 5rem 2rem; }
+.section-label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--red); font-weight: 600; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+.section-label::before { content:''; display:inline-block; width:20px; height:1px; background:var(--red); }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 0.95; margin-bottom: 2.5rem; }
+
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--border); }
+.tl-item { padding: 1.75rem 1.5rem; border-right: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; }
+.tl-item:last-child { border-right: none; }
+.tl-item:hover { background: rgba(232,0,28,0.04); }
+.tl-item::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:var(--red); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
+.tl-item:hover::before { transform:scaleX(1); }
+.tl-date { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--red); line-height: 1; margin-bottom: 0.6rem; }
+.tl-event { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.tl-event strong { color: var(--white); display: block; font-size: 0.85rem; margin-bottom: 0.15rem; }
+
+.roles-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--border); }
+.role-card { padding: 2.5rem 2rem; border-right: 1px solid var(--border); position: relative; overflow: hidden; transition: background 0.3s; background: var(--black); }
+.role-card:last-child { border-right: none; }
+.role-card:hover { background: var(--red-deep); }
+.role-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--red),var(--red-mid)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s; }
+.role-card:hover::before { transform:scaleX(1); }
+.rc-num { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; margin-bottom: 1rem; }
+.rc-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.5rem; line-height: 0.95; margin-bottom: 1rem; }
+.rc-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.5rem; }
+.rc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.rc-tag { padding: 0.2rem 0.6rem; border: 1px solid var(--border); border-radius: 999px; font-size: 0.65rem; color: var(--muted); text-transform: uppercase; }
+.home-footer-cta { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 1140px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+
+/* APPLY */
+.apply-top { max-width: 820px; margin: 0 auto; padding: 3rem 2rem 2rem; }
+.apply-top h1 { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; margin-bottom: 0.5rem; }
+.apply-top p { font-size: 0.85rem; color: var(--muted); }
+.step-bar { max-width: 820px; margin: 0 auto; padding: 0 2rem; display: flex; margin-bottom: 3rem; border-bottom: 1px solid var(--border-subtle); }
+.step-ind { flex: 1; display: flex; align-items: center; gap: 0.5rem; padding: 0.85rem 0; border-bottom: 2px solid transparent; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); transition: all 0.3s; margin-bottom: -1px; }
+.step-ind.active { border-bottom-color: var(--red); color: var(--white); }
+.step-ind.done { border-bottom-color: rgba(232,0,28,0.4); color: rgba(255,255,255,0.4); }
+.snum { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid currentColor; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; font-weight: 700; flex-shrink: 0; transition: all 0.3s; }
+.step-ind.active .snum { background: var(--red); border-color: var(--red); color: white; }
+.step-ind.done .snum { background: rgba(232,0,28,0.35); border-color: transparent; }
+
+.form-section { display: none; max-width: 820px; margin: 0 auto; padding: 0 2rem 5rem; animation: fadeUp 0.35s ease; }
+.form-section.active { display: block; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+
+.form-group { margin-bottom: 1.5rem; }
+label { display: block; font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.5rem; font-weight: 600; }
+input[type=text], input[type=email], input[type=tel], input[type=password], input[type=number], input[type=datetime-local], select {
+  width: 100%; padding: 0.85rem 1rem; background: #0A0000; border: 1px solid var(--border); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.92rem; outline: none; transition: border-color 0.2s, background 0.2s; border-radius: 1px;
+}
+input:focus, select:focus { border-color: var(--red); }
+input::placeholder { color: rgba(136,136,136,0.6); }
+input.prefilled { border-color: rgba(34,197,94,0.45); background: rgba(34,197,94,0.04); }
+select option { background: #111; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.divider { height: 1px; background: var(--border); margin: 2rem 0; }
+.form-nav { display: flex; justify-content: space-between; align-items: center; }
+
+/* LOOKUP BLOCK */
+.lookup-block { border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 2rem; background: rgba(232,0,28,0.02); position: relative; }
+.lookup-block::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--red),transparent); }
+.lookup-header { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--red); font-weight: 700; margin-bottom: 0.6rem; }
+.lookup-desc { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.55; }
+.lookup-row { display: flex; gap: 0.5rem; }
+.lookup-row input { flex: 1; }
+.lookup-status { margin-top: 0.75rem; font-size: 0.78rem; display: none; align-items: center; gap: 0.5rem; line-height: 1.45; }
+.lookup-status.show { display: flex; }
+.lookup-status.found { color: var(--green); }
+.lookup-status.notfound { color: var(--muted); }
+.lookup-status.error { color: var(--red); }
+.lookup-dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; margin-top: 3px; }
+.prefill-badge { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.6rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; margin-left: 0.4rem; vertical-align: middle; }
+
+/* ROLE OPTIONS */
+.role-options { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+.role-opt { border: 1px solid var(--border); padding: 1.25rem 1.5rem; cursor: pointer; transition: all 0.2s; position: relative; display: flex; align-items: flex-start; gap: 1rem; user-select: none; }
+.role-opt:hover { border-color: rgba(232,0,28,0.5); background: rgba(232,0,28,0.02); }
+.role-opt.selected { border-color: var(--red); background: rgba(232,0,28,0.06); }
+.ro-check { width: 18px; height: 18px; border: 1.5px solid var(--border); border-radius: 2px; flex-shrink: 0; margin-top: 3px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; font-size: 11px; color: transparent; }
+.role-opt.selected .ro-check { background: var(--red); border-color: var(--red); color: white; }
+.ro-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 0.2rem; line-height: 1; }
+.ro-desc { font-size: 0.78rem; color: var(--muted); }
+.ro-priority { position: absolute; top: 0.75rem; right: 0.75rem; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; background: var(--red); color: white; padding: 0.2rem 0.5rem; display: none; }
+.role-opt.selected .ro-priority { display: block; }
+.ro-subrole-wrap { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+.role-opt.selected .ro-subrole-wrap { display: block; }
+
+/* SLOT PICKER */
+.slot-group { margin-bottom: 3rem; }
+.slot-group-hdr { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--border); }
+.slot-priority-badge { font-family: 'Bebas Neue', sans-serif; font-size: 0.95rem; background: rgba(232,0,28,0.12); color: var(--red); padding: 0.15rem 0.5rem; border: 1px solid rgba(232,0,28,0.25); }
+.slot-dept-name { font-size: 0.95rem; font-weight: 600; }
+.slot-hint { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.75rem; font-style: italic; }
+.slots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); gap: 0.5rem; }
+.slot-btn { padding: 0.75rem 0.5rem; border: 1px solid var(--border); background: transparent; color: var(--white); cursor: pointer; text-align: center; transition: all 0.2s; font-family: 'DM Sans', sans-serif; border-radius: 1px; }
+.slot-btn:hover:not(:disabled) { border-color: var(--red); background: rgba(232,0,28,0.05); }
+.slot-btn.selected { border-color: var(--red); background: rgba(232,0,28,0.15); }
+.slot-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+.slot-date { font-weight: 700; font-size: 0.82rem; }
+.slot-time { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+.slot-avail { font-size: 0.62rem; color: var(--red); margin-top: 0.25rem; }
+
+/* REVIEW */
+.review-card { border: 1px solid var(--border); padding: 1.5rem; background: var(--card-bg); margin-bottom: 1rem; }
+.review-card-hdr { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border); }
+.review-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.25rem; }
+.review-row { display: flex; justify-content: space-between; padding: 0.35rem 0; font-size: 0.85rem; }
+.r-label { color: var(--muted); }
+.r-val { font-weight: 600; }
+.r-val.highlight { color: var(--red); }
+.r-val.cal { color: var(--green); font-size: 0.78rem; font-weight: 500; }
+
+.cal-notice { border: 1px solid rgba(34,197,94,0.2); background: rgba(34,197,94,0.03); padding: 1rem 1.25rem; margin-top: 1.25rem; display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.8rem; color: var(--muted); line-height: 1.55; }
+.cal-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+
+/* SUCCESS */
+.success-screen { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 55vh; text-align: center; padding: 2rem; }
+.success-icon { width: 72px; height: 72px; border-radius: 50%; border: 1.5px solid var(--red); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 2rem; color: var(--red); }
+.success-app-id { font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem; color: var(--red); letter-spacing: 0.08em; margin: 0.75rem 0; }
+.success-cal { display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; color: var(--green); margin: 1rem 0; padding: 0.75rem 1.25rem; border: 1px solid rgba(34,197,94,0.2); background: rgba(34,197,94,0.04); }
+
+/* ADMIN */
+.admin-login-overlay { min-height: calc(100vh - 64px); display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.login-box { width: 100%; max-width: 380px; border: 1px solid var(--border); padding: 2.5rem; background: var(--card-bg); }
+.login-box h2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin-bottom: 0.35rem; }
+.login-box p { font-size: 0.82rem; color: var(--muted); margin-bottom: 2rem; }
+.login-error { font-size: 0.78rem; color: var(--red); margin-bottom: 0.75rem; display: none; }
+.admin-wrap { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.admin-hdr { display: flex; justify-content: space-between; align-items: flex-end; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.admin-hdr h1 { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; line-height: 1; }
+.tab-bar { display: flex; border-bottom: 1px solid var(--border); margin-bottom: 2rem; }
+.tab { padding: 0.75rem 1.5rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); cursor: pointer; border: none; background: transparent; border-bottom: 2px solid transparent; font-family: 'DM Sans', sans-serif; font-weight: 600; transition: all 0.2s; margin-bottom: -1px; }
+.tab:hover { color: var(--white); }
+.tab.active { color: var(--white); border-bottom-color: var(--red); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+.filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.flt-btn { padding: 0.3rem 0.75rem; border: 1px solid var(--border); background: transparent; color: var(--muted); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.07em; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 600; transition: all 0.2s; border-radius: 999px; }
+.flt-btn:hover,.flt-btn.active { border-color: var(--red); color: var(--white); background: rgba(232,0,28,0.08); }
+.data-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+.data-table th { text-align: left; padding: 0.7rem 1rem; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); border-bottom: 1px solid var(--border); background: var(--surface); font-weight: 700; }
+.data-table td { padding: 0.9rem 1rem; border-bottom: 1px solid rgba(232,0,28,0.08); vertical-align: top; }
+.data-table tr:hover td { background: rgba(232,0,28,0.025); }
+.data-table td.mono { font-family: monospace; font-size: 0.75rem; }
+.badge { display: inline-block; padding: 0.18rem 0.5rem; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; border-radius: 1px; }
+.badge-pending { background: rgba(255,200,0,0.12); color: #FFC800; }
+.badge-confirmed { background: rgba(34,197,94,0.12); color: #22C55E; }
+.badge-rejected { background: rgba(232,0,28,0.12); color: var(--red); }
+.cc-dept { font-weight: 600; font-size: 0.8rem; margin-bottom: 0.15rem; }
+.cc-sub { font-size: 0.7rem; color: var(--muted); }
+.cc-slot { font-size: 0.72rem; color: var(--red); margin-top: 0.15rem; font-weight: 600; }
+.slot-mgmt-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.slot-mgmt-dept { border: 1px solid var(--border); padding: 1.5rem; }
+.smd-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; margin-bottom: 1.25rem; }
+.existing-slot { display: flex; justify-content: space-between; align-items: center; padding: 0.55rem 0.75rem; background: var(--surface); margin-bottom: 0.35rem; font-size: 0.78rem; }
+.es-cap { font-size: 0.68rem; color: var(--muted); margin-top: 0.1rem; }
+.slot-del { background: none; border: none; color: var(--muted); cursor: pointer; font-size: 1rem; padding: 0 0.25rem; transition: color 0.2s; }
+.slot-del:hover { color: var(--red); }
+.add-slot-form { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
+.add-slot-form h4 { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--muted); margin-bottom: 0.75rem; font-weight: 700; }
+.add-slot-row { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; }
+.add-slot-row input { flex: 1; min-width: 0; }
+.rec-link-card { border: 1px solid var(--border); padding: 1.25rem 1.5rem; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.rlc-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; }
+.rlc-url { font-size: 0.7rem; color: var(--muted); font-family: monospace; margin-top: 0.3rem; word-break: break-all; }
+.rec-wrap { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+.loading-block { text-align: center; padding: 4rem 2rem; }
+.spinner { width: 28px; height: 28px; border: 2px solid var(--border); border-top-color: var(--red); border-radius: 50%; animation: spin 0.75s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { font-size: 0.8rem; color: var(--muted); }
+.empty-block { text-align: center; padding: 4rem 2rem; }
+.empty-block p { font-size: 0.85rem; color: var(--muted); }
+.toast { position: fixed; bottom: 2rem; right: 2rem; padding: 0.9rem 1.4rem; background: #111; border: 1px solid var(--border); border-left: 3px solid var(--red); font-size: 0.82rem; z-index: 9998; transform: translateY(20px); opacity: 0; transition: all 0.3s; max-width: 320px; line-height: 1.4; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast.success { border-left-color: #22C55E; }
+.toast.error { border-left-color: var(--red); }
+
+@media (max-width: 768px) {
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .roles-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .slot-mgmt-grid { grid-template-columns: 1fr; }
+  .hero-title { font-size: 4.5rem; }
+  .step-ind .slabel { display: none; }
+  .home-footer-cta { flex-direction: column; gap: 1rem; text-align: center; }
+  .lookup-row { flex-direction: column; }
+}
+@media (max-width: 500px) { nav { padding: 0 1rem; } .timeline { grid-template-columns: 1fr; } .hero-title { font-size: 3.5rem; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand" onclick="showView('home')">
+    <span class="ted">TED</span><span class="x">x</span><span class="rest">&nbsp;Bangkok Youth</span>
+  </div>
+  <div class="nav-right">
+    <button class="nav-link" onclick="showView('home')">Home</button>
+    <button class="nav-link" onclick="showView('admin')">Admin</button>
+    <button class="nav-cta" onclick="showView('apply')">Apply Now</button>
+  </div>
+</nav>
+<div class="toast" id="toast"></div>
+
+<!-- HOME -->
+<div id="view-home" class="view active">
+  <div class="hero-wrap">
+    <div class="hero-glow"></div><div class="hero-glow-2"></div>
+    <div class="eyebrow">Event Team 2026 · Recruitment</div>
+    <h1 class="hero-title"><span class="w">WE ARE</span><span class="r">LOOKING</span><span class="w">FOR YOU.</span></h1>
+    <div class="hero-meta">
+      <div><div class="meta-label">Applications Close</div><div class="meta-value">15 May 2026</div></div>
+      <div><div class="meta-label">Shortlist</div><div class="meta-value">17 May 2026</div></div>
+      <div><div class="meta-label">Interviews</div><div class="meta-value">20 – 29 May 2026</div></div>
+      <div><div class="meta-label">Results</div><div class="meta-value">30 May 2026</div></div>
+    </div>
+    <div class="hero-divider"></div>
+    <div class="hero-cta">
+      <button class="btn btn-red" onclick="showView('apply')">Book Interview Slot →</button>
+      <div class="live-badge"><span class="pulse-dot"></span><span>Applications open now</span></div>
+    </div>
+  </div>
+  <div class="section" style="padding-top:0">
+    <div class="section-label">Recruitment Timetable</div>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-date">1–15 พ.ค.</div><div class="tl-event"><strong>เปิดรับสมัคร</strong>Applications Open</div></div>
+      <div class="tl-item"><div class="tl-date">17 พ.ค.</div><div class="tl-event"><strong>ประกาศผู้มีสิทธิ์สัมภาษณ์</strong>Shortlist Announced</div></div>
+      <div class="tl-item"><div class="tl-date">20–29 พ.ค.</div><div class="tl-event"><strong>สัมภาษณ์</strong>Interview Period</div></div>
+      <div class="tl-item"><div class="tl-date">30 พ.ค.</div><div class="tl-event"><strong>ประกาศผลและยืนยันสิทธิ์</strong>Results &amp; Confirm</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-label">Open Positions</div>
+    <h2 class="section-title">Roles</h2>
+    <div class="roles-grid">
+      <div class="role-card"><div class="rc-num">Department 01</div><div class="rc-title">Operation Lead</div><div class="rc-desc">วางแผนและบริหารจัดการทีม รวมถึงอำนวยความสะดวกและสร้างประสบการณ์น่าประทับใจให้กับผู้ชม</div><div class="rc-tags"><span class="rc-tag">Management</span><span class="rc-tag">Planning</span><span class="rc-tag">Coordination</span></div></div>
+      <div class="role-card"><div class="rc-num">Department 02</div><div class="rc-title">Exhibition &amp; Activity</div><div class="rc-desc">รังสรรค์พื้นที่และประสบการณ์ภายในงาน TEDxBangkok Youth ผ่านกิจกรรมที่เปิดโอกาสให้ผู้เข้าร่วมได้พบปะ แลกเปลี่ยน</div><div class="rc-tags"><span class="rc-tag">Exhibition Design</span><span class="rc-tag">Production</span><span class="rc-tag">Event Strategy</span></div></div>
+      <div class="role-card"><div class="rc-num">Department 03</div><div class="rc-title">In-Hall Designer</div><div class="rc-desc">วางแผนและออกแบบองค์ประกอบแสง สี เสียง และเวที เพื่อมอบประสบการณ์ที่ดีให้กับผู้ชมใน Hall</div><div class="rc-tags"><span class="rc-tag">Lighting</span><span class="rc-tag">Sound</span><span class="rc-tag">Stage</span><span class="rc-tag">Motion</span><span class="rc-tag">+4</span></div></div>
+    </div>
+  </div>
+  <div class="home-footer-cta">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1">Ready to join<br><span style="color:var(--red)">the team?</span></div>
+    <button class="btn btn-red" onclick="showView('apply')" style="font-size:0.9rem;padding:1rem 2.5rem">Book Your Interview →</button>
+  </div>
+  <div style="height:3rem"></div>
+</div>
+
+<!-- APPLY -->
+<div id="view-apply" class="view">
+  <div class="apply-top">
+    <div class="section-label">TEDxBangkok Youth · Event Team 2026</div>
+    <h1>Book Interview</h1>
+    <p>Already submitted the screening form? Enter your email below and your details will be filled in automatically.</p>
+  </div>
+  <div class="step-bar">
+    <div class="step-ind active" id="si-1"><div class="snum">1</div><span class="slabel">Your Details</span></div>
+    <div class="step-ind" id="si-2"><div class="snum">2</div><span class="slabel">Role Preferences</span></div>
+    <div class="step-ind" id="si-3"><div class="snum">3</div><span class="slabel">Interview Slots</span></div>
+    <div class="step-ind" id="si-4"><div class="snum">4</div><span class="slabel">Confirm</span></div>
+  </div>
+
+  <!-- Step 1 -->
+  <div class="form-section active" id="step-1">
+    <div class="lookup-block">
+      <div class="lookup-header">⚡ Auto-fill from screening form</div>
+      <div class="lookup-desc">Enter the email you used when submitting the Google Form. Your name, nickname, phone, and LINE ID will be pre-filled automatically. You can edit any field before continuing.</div>
+      <div class="lookup-row">
+        <input type="email" id="lookup-email" placeholder="your@email.com" onkeydown="if(event.key==='Enter')doLookup()">
+        <button class="btn btn-red btn-sm" id="lookup-btn" onclick="doLookup()">Look Up</button>
+      </div>
+      <div class="lookup-status" id="lookup-status">
+        <span class="lookup-dot"></span>
+        <span id="lookup-msg"></span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name * <span class="prefill-badge" id="b-name" style="display:none">✓ auto-filled</span></label>
+        <input type="text" id="f-name" placeholder="e.g. Supakarn Rattanaphan">
+      </div>
+      <div class="form-group">
+        <label>Nickname * <span class="prefill-badge" id="b-nick" style="display:none">✓ auto-filled</span></label>
+        <input type="text" id="f-nickname" placeholder="e.g. Mick">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Email for Interview Confirmations *</label>
+        <input type="email" id="f-email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label>Phone * <span class="prefill-badge" id="b-phone" style="display:none">✓ auto-filled</span></label>
+        <input type="tel" id="f-phone" placeholder="08X-XXX-XXXX">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>LINE ID * <span class="prefill-badge" id="b-line" style="display:none">✓ auto-filled</span></label>
+      <input type="text" id="f-line" placeholder="@yourlineid">
+    </div>
+    <div class="divider"></div>
+    <div class="form-nav"><span></span><button class="btn btn-red" onclick="nextStep(1)">Continue →</button></div>
+  </div>
+
+  <!-- Step 2 -->
+  <div class="form-section" id="step-2">
+    <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem">Select up to 3 departments. The order you click them sets your priority (1st, 2nd, 3rd choice).</p>
+    <div class="role-options" id="role-options-list"></div>
+    <div class="divider"></div>
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(2)">← Back</button>
+      <button class="btn btn-red" onclick="nextStep(2)">Continue →</button>
+    </div>
+  </div>
+
+  <!-- Step 3 -->
+  <div class="form-section" id="step-3">
+    <div id="slot-picker"></div>
+    <div class="divider"></div>
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(3)">← Back</button>
+      <button class="btn btn-red" onclick="nextStep(3)">Review →</button>
+    </div>
+  </div>
+
+  <!-- Step 4 -->
+  <div class="form-section" id="step-4">
+    <div id="review-content"></div>
+    <div class="cal-notice">
+      <div class="cal-icon">📅</div>
+      <div>A <strong style="color:white">Google Calendar invite</strong> will be sent to your email for each confirmed interview slot immediately after submission. Make sure your email address above is correct.</div>
+    </div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-top:1rem;line-height:1.6">Slots are reserved <strong style="color:white">immediately on submission</strong> — first-come, first-served.</p>
+    <div class="divider"></div>
+    <div class="form-nav">
+      <button class="btn btn-ghost" onclick="prevStep(4)">← Back</button>
+      <button class="btn btn-red" id="submit-btn" onclick="submitApplication()">Submit &amp; Reserve Slots ✓</button>
+    </div>
+  </div>
+
+  <!-- Success -->
+  <div class="form-section" id="step-success">
+    <div class="success-screen">
+      <div class="success-icon">✓</div>
+      <div class="section-label">Interview Slots Reserved</div>
+      <div class="success-app-id" id="success-id">APP-000000</div>
+      <div class="success-cal">📅 Calendar invites sent to <strong id="success-email" style="margin-left:0.3rem">your email</strong></div>
+      <p style="font-size:0.85rem;color:var(--muted);max-width:420px;line-height:1.7;margin-bottom:2rem">
+        Your slots are confirmed and locked. Shortlisted candidates will be announced on <strong style="color:white">17 May 2026</strong>.
+      </p>
+      <button class="btn btn-outline" onclick="showView('home')">← Back to Home</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="view-admin" class="view">
+  <div class="admin-login-overlay" id="admin-login">
+    <div class="login-box">
+      <h2>Admin Access</h2>
+      <p>Enter your admin password to continue.</p>
+      <div class="form-group"><label>Password</label><input type="password" id="admin-pw" placeholder="••••••••" onkeydown="if(event.key==='Enter')adminLogin()"></div>
+      <div class="login-error" id="admin-err">Incorrect password.</div>
+      <button class="btn btn-red w-full" onclick="adminLogin()">Enter Dashboard</button>
+    </div>
+  </div>
+  <div class="admin-wrap" id="admin-dash" style="display:none">
+    <div class="admin-hdr">
+      <div><div class="section-label">TEDxBangkok Youth 2026</div><h1>Admin Dashboard</h1></div>
+      <button class="btn btn-ghost btn-sm" onclick="adminLogout()">Sign Out</button>
+    </div>
+    <div class="tab-bar">
+      <button class="tab active" onclick="switchTab('applications')">Applications</button>
+      <button class="tab" onclick="switchTab('slots')">Manage Slots</button>
+      <button class="tab" onclick="switchTab('links')">Recruiter Links</button>
+    </div>
+    <div class="tab-panel active" id="tp-applications">
+      <div class="filter-bar">
+        <button class="flt-btn active" onclick="filterApps('all',this)">All</button>
+        <button class="flt-btn" onclick="filterApps('operation',this)">Operation Lead</button>
+        <button class="flt-btn" onclick="filterApps('exhibition',this)">Exhibition &amp; Activity</button>
+        <button class="flt-btn" onclick="filterApps('inhall',this)">In-Hall Designer</button>
+      </div>
+      <div id="apps-table"></div>
+    </div>
+    <div class="tab-panel" id="tp-slots">
+      <div id="slots-content"><div class="loading-block"><div class="spinner"></div><div class="loading-text">Loading…</div></div></div>
+    </div>
+    <div class="tab-panel" id="tp-links">
+      <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem">Share these links with each department's recruiter for a filtered, read-only view of their applicants.</p>
+      <div id="recruiter-links"></div>
+    </div>
+  </div>
+</div>
+
+<!-- RECRUITER -->
+<div id="view-recruiter" class="view">
+  <div class="rec-wrap">
+    <div class="admin-hdr">
+      <div><div class="section-label" id="rec-label">Recruiter View</div><h1 id="rec-title">Department Applicants</h1></div>
+    </div>
+    <div id="rec-table"><div class="loading-block"><div class="spinner"></div><div class="loading-text">Loading…</div></div></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════
+//  CONFIG  ← update after GAS deploy
+// ══════════════════════════════════════
+const CONFIG = {
+  SCRIPT_URL: 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL',
+  ADMIN_PASSWORD: 'tedx2026admin',
+  RECRUITER_TOKENS: { operation:'rec-op-2026', exhibition:'rec-ex-2026', inhall:'rec-ih-2026' }
+};
+
+const DEPTS = {
+  operation: { label:'Operation Lead', short:'Operation', single:true, subRoles:['Operation Lead'], desc:'วางแผนและบริหารจัดการทีม — Team planning, management &amp; coordination' },
+  exhibition: { label:'Exhibition &amp; Activity', short:'Exhibition & Activity', single:false, subRoles:['Experience &amp; Exhibition Design','Production','Event Strategy'], desc:'รังสรรค์พื้นที่และประสบการณ์ — Craft spaces, exhibitions &amp; activities' },
+  inhall: { label:'In-Hall Designer', short:'In-Hall', single:false, subRoles:['Lighting Designer','Assistant Lighting Designer','Sound Designer','Assistant Sound Designer','Briefing Motion','Motion Graphic Designer','Stage Designer','Stage Performance'], desc:'วางแผนและออกแบบองค์ประกอบแสง สี เสียง — Lighting, sound, stage &amp; motion design' }
+};
+
+let S = { step:1, personal:{}, selectedDepts:[], choices:[], slots:{}, adminAuthed:false, adminFilter:'all', allApps:[] };
+const g = id => document.getElementById(id);
+const v = id => g(id)?.value?.trim() || '';
+
+// ── ROUTING ──
+function showView(name) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  g('view-'+name).classList.add('active'); window.scrollTo(0,0);
+  if (name==='apply') initApply();
+  if (name==='admin') initAdmin();
+}
+function routeURL() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('view')==='recruiter') { showView('recruiter'); loadRecruiterView(p.get('dept'),p.get('key')); }
+  else if (p.get('view')==='admin') showView('admin');
+}
+
+// ── EMAIL LOOKUP (Path A) ──
+async function doLookup() {
+  const email = v('lookup-email');
+  if (!email) { toast('Enter your email first','error'); return; }
+  const btn = g('lookup-btn'); const status = g('lookup-status'); const msg = g('lookup-msg');
+  btn.disabled=true; btn.textContent='…';
+  status.className='lookup-status show'; msg.textContent='Looking up your form response…';
+  try {
+    const r = await fetch(`${CONFIG.SCRIPT_URL}?action=lookupApplicant&email=${encodeURIComponent(email)}`);
+    const d = await r.json();
+    if (d.found) {
+      fill('f-name',    d.name,     'b-name');
+      fill('f-nickname',d.nickname, 'b-nick');
+      fill('f-phone',   d.phone,    'b-phone');
+      fill('f-line',    d.lineId,   'b-line');
+      g('f-email').value = email;
+      status.className='lookup-status show found';
+      msg.textContent = `✓ Found: ${d.name} (${d.nickname}) — details pre-filled. Review and edit if needed.`;
+      toast('Details pre-filled from your form response','success');
+    } else {
+      status.className='lookup-status show notfound';
+      msg.textContent = 'No form response found for this email. Please fill in your details manually below.';
+    }
+  } catch(e) {
+    status.className='lookup-status show error';
+    msg.textContent = 'Could not connect. Please fill in your details manually.';
+  }
+  btn.disabled=false; btn.textContent='Look Up';
+}
+
+function fill(id, val, badgeId) {
+  if (!val) return;
+  g(id).value = val; g(id).classList.add('prefilled');
+  if (badgeId) g(badgeId).style.display = 'inline-flex';
+}
+
+// ── STEPS ──
+function nextStep(from) {
+  if (from===1) {
+    if (!valPersonal()) return;
+    S.personal = { name:v('f-name'), nickname:v('f-nickname'), email:v('f-email'), phone:v('f-phone'), lineId:v('f-line') };
+    goStep(2); renderRoleOptions();
+  } else if (from===2) {
+    if (!valRoles()) return;
+    buildChoices(); goStep(3); renderSlotPicker();
+  } else if (from===3) {
+    if (!valSlots()) return;
+    goStep(4); renderReview();
+  }
+}
+function prevStep(from) { goStep(from-1); }
+function goStep(n) {
+  S.step = n;
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  g(n===5?'step-success':'step-'+n).classList.add('active');
+  for (let i=1;i<=4;i++) { const el=g('si-'+i); el.classList.remove('active','done'); if(i===n)el.classList.add('active'); if(i<n)el.classList.add('done'); }
+  window.scrollTo(0,0);
+}
+
+// ── VALIDATION ──
+function valPersonal() {
+  const checks=[['f-name','Full name'],['f-nickname','Nickname'],['f-email','Email'],['f-phone','Phone'],['f-line','LINE ID']];
+  for(const [id,lbl] of checks) { if(!v(id)){toast(lbl+' is required','error');g(id).focus();return false;} }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('f-email'))){toast('Please enter a valid email','error');return false;}
+  return true;
+}
+function valRoles() {
+  if(!S.selectedDepts.length){toast('Please select at least one department','error');return false;}
+  for(const key of S.selectedDepts){if(!DEPTS[key].single&&!g(`subrole-${key}`)?.value){toast('Please select a sub-role for '+DEPTS[key].short,'error');return false;}}
+  return true;
+}
+function valSlots() {
+  for(const c of S.choices){if(!c.slotId){toast('Please select a slot for '+DEPTS[c.deptKey].short,'error');return false;}}
+  return true;
+}
+
+// ── ROLE SELECTOR ──
+function initApply() {
+  goStep(1); S.selectedDepts=[]; S.choices=[];
+  g('lookup-status').className='lookup-status'; g('lookup-email').value='';
+  ['b-name','b-nick','b-phone','b-line'].forEach(id=>g(id).style.display='none');
+  ['f-name','f-nickname','f-email','f-phone','f-line'].forEach(id=>{g(id).value='';g(id).classList.remove('prefilled');});
+}
+function renderRoleOptions() {
+  S.selectedDepts=[];
+  g('role-options-list').innerHTML = Object.entries(DEPTS).map(([key,dept])=>{
+    const sub = dept.single?'': `<div class="ro-subrole-wrap"><label>Specific sub-role</label><select id="subrole-${key}" onclick="event.stopPropagation()"><option value="">— Choose sub-role —</option>${dept.subRoles.map(r=>`<option value="${r}">${r}</option>`).join('')}</select></div>`;
+    return `<div class="role-opt" id="ro-${key}" onclick="toggleDept('${key}')"><div class="ro-check">✓</div><div style="flex:1"><div class="ro-title">${dept.label}</div><div class="ro-desc">${dept.desc}</div>${sub}</div><div class="ro-priority" id="rop-${key}"></div></div>`;
+  }).join('');
+}
+function toggleDept(key) {
+  const idx=S.selectedDepts.indexOf(key);
+  if(idx>=0){S.selectedDepts.splice(idx,1);g(`ro-${key}`).classList.remove('selected');}
+  else{if(S.selectedDepts.length>=3){toast('Max 3 departments','error');return;}S.selectedDepts.push(key);g(`ro-${key}`).classList.add('selected');}
+  Object.keys(DEPTS).forEach(k=>{const i=S.selectedDepts.indexOf(k);g(`rop-${k}`).textContent=i===0?'1st Choice':i===1?'2nd Choice':i===2?'3rd Choice':'';});
+}
+function buildChoices() {
+  S.choices=S.selectedDepts.map((key,i)=>{
+    const dept=DEPTS[key]; const sub=dept.single?dept.subRoles[0]:(g(`subrole-${key}`)?.value||'');
+    return {deptKey:key,priority:i+1,subRole:sub,slotId:null,slotData:null};
+  });
+}
+
+// ── SLOT PICKER ──
+async function renderSlotPicker() {
+  const el=g('slot-picker');
+  el.innerHTML='<div class="loading-block"><div class="spinner"></div><div class="loading-text">Fetching available slots…</div></div>';
+  await Promise.all(S.choices.map(async c=>{if(!S.slots[c.deptKey])S.slots[c.deptKey]=await fetchSlots(c.deptKey);}));
+  el.innerHTML=S.choices.map((c,i)=>{
+    const dept=DEPTS[c.deptKey];
+    const pLabel=['1st Choice','2nd Choice','3rd Choice'][i];
+    const hint=i>0?`Must be on or after your ${['','1st','2nd'][i]} choice slot (chronological order enforced).`:'Select any available slot.';
+    return `<div class="slot-group"><div class="slot-group-hdr"><span class="slot-priority-badge">${pLabel}</span><span class="slot-dept-name">${dept.label}</span></div><div class="slot-hint">${hint}</div><div class="slots-grid" id="sg-${c.deptKey}-${i}">${buildSlotBtns(c.deptKey,i)}</div></div>`;
+  }).join('');
+}
+function buildSlotBtns(deptKey,ci) {
+  const slots=S.slots[deptKey]||[];
+  if(!slots.length)return '<p style="font-size:0.8rem;color:var(--muted)">No slots available yet. Check back after 17 May.</p>';
+  const prev=ci>0?S.choices[ci-1].slotData:null;
+  const minDt=prev?new Date(prev.datetime):null;
+  return slots.map(s=>{
+    const isFull=s.available<=0; const isTooEarly=minDt&&new Date(s.datetime)<minDt;
+    const isSel=S.choices[ci]?.slotId===s.id; const dis=isFull||isTooEarly;
+    const dt=new Date(s.datetime);
+    const dateStr=dt.toLocaleDateString('en-GB',{day:'numeric',month:'short',weekday:'short'});
+    const startStr=dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const endDt=new Date(dt.getTime()+30*60*1000);
+    const endStr=endDt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    const avail=isFull?'Full':isTooEarly?'Too early':`${s.available} left`;
+    return `<button class="slot-btn${isSel?' selected':''}" ${dis?'disabled':''} onclick="selSlot(${ci},'${s.id}',event)"><div class="slot-date">${dateStr}</div><div class="slot-time">${startStr} – ${endStr}</div><div class="slot-avail">${avail}</div></button>`;
+  }).join('');
+}
+function selSlot(ci,slotId,e) {
+  e&&e.stopPropagation();
+  const c=S.choices[ci]; c.slotId=slotId; c.slotData=(S.slots[c.deptKey]||[]).find(s=>s.id===slotId);
+  g(`sg-${c.deptKey}-${ci}`).innerHTML=buildSlotBtns(c.deptKey,ci);
+  for(let i=ci+1;i<S.choices.length;i++){
+    const nc=S.choices[i];
+    if(nc.slotData&&c.slotData&&new Date(nc.slotData.datetime)<new Date(c.slotData.datetime)){nc.slotId=null;nc.slotData=null;}
+    const el=g(`sg-${nc.deptKey}-${i}`); if(el)el.innerHTML=buildSlotBtns(nc.deptKey,i);
+  }
+}
+async function fetchSlots(deptKey) {
+  try{const r=await fetch(`${CONFIG.SCRIPT_URL}?action=getSlots&dept=${deptKey}`);return(await r.json()).slots||[];}catch(e){return[];}
+}
+
+// ── REVIEW ──
+function renderReview() {
+  const p=S.personal; const pL=['1st Choice','2nd Choice','3rd Choice'];
+  const choicesHtml=S.choices.map((c,i)=>{
+    const dept=DEPTS[c.deptKey]; const slotDt=c.slotData?new Date(c.slotData.datetime):null;
+    const slotStr=slotDt?slotDt.toLocaleString('en-GB',{weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'—';
+    return `<div class="review-card"><div class="review-card-hdr"><div class="review-title">${pL[i]} — ${dept.label}</div><span class="badge badge-pending">Pending</span></div><div class="review-row"><span class="r-label">Sub-role</span><span class="r-val">${c.subRole}</span></div><div class="review-row"><span class="r-label">Interview Slot</span><span class="r-val highlight">${slotStr}</span></div><div class="review-row"><span class="r-label">Calendar Invite</span><span class="r-val cal">📅 → ${p.email}</span></div></div>`;
+  }).join('');
+  g('review-content').innerHTML=`<div class="review-card" style="margin-bottom:1.5rem"><div class="review-card-hdr"><div class="review-title">Personal Details</div></div><div class="review-row"><span class="r-label">Full Name</span><span class="r-val">${p.name}</span></div><div class="review-row"><span class="r-label">Nickname</span><span class="r-val">${p.nickname}</span></div><div class="review-row"><span class="r-label">Email</span><span class="r-val">${p.email}</span></div><div class="review-row"><span class="r-label">Phone</span><span class="r-val">${p.phone}</span></div><div class="review-row"><span class="r-label">LINE ID</span><span class="r-val">${p.lineId}</span></div></div><div class="section-label" style="margin-bottom:0.75rem">Role Preferences &amp; Slots</div>${choicesHtml}`;
+}
+
+// ── SUBMIT ──
+async function submitApplication() {
+  const btn=g('submit-btn'); btn.disabled=true; btn.textContent='Submitting…';
+  const payload={action:'submit',applicant:S.personal,choices:S.choices.map(c=>({deptKey:c.deptKey,deptLabel:DEPTS[c.deptKey].label,priority:c.priority,subRole:c.subRole,slotId:c.slotId}))};
+  try {
+    const r=await fetch(CONFIG.SCRIPT_URL,{method:'POST',body:JSON.stringify(payload),headers:{'Content-Type':'text/plain'}});
+    const d=await r.json();
+    if(d.success){
+      g('success-id').textContent=d.applicationId||('APP-'+Date.now().toString().slice(-6));
+      g('success-email').textContent=S.personal.email;
+      goStep(5); S.selectedDepts=[];
+    } else {
+      toast(d.error||'Submission failed. Please try again.','error');
+      btn.disabled=false; btn.textContent='Submit &amp; Reserve Slots ✓';
+    }
+  } catch(e){
+    toast('Network error. Please try again.','error');
+    btn.disabled=false; btn.textContent='Submit &amp; Reserve Slots ✓';
+  }
+}
+
+// ── ADMIN ──
+function initAdmin(){if(S.adminAuthed)showAdminDash();else{g('admin-login').style.display='flex';g('admin-dash').style.display='none';}}
+function adminLogin(){if(g('admin-pw').value===CONFIG.ADMIN_PASSWORD){S.adminAuthed=true;g('admin-err').style.display='none';showAdminDash();}else g('admin-err').style.display='block';}
+function adminLogout(){S.adminAuthed=false;g('admin-login').style.display='flex';g('admin-dash').style.display='none';g('admin-pw').value='';}
+function showAdminDash(){g('admin-login').style.display='none';g('admin-dash').style.display='block';loadAdminApps();renderRecruiterLinks();}
+function switchTab(name){document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['applications','slots','links'][i]===name));document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));g(`tp-${name}`).classList.add('active');if(name==='slots')loadAdminSlots();}
+async function loadAdminApps(){g('apps-table').innerHTML='<div class="loading-block"><div class="spinner"></div><div class="loading-text">Loading…</div></div>';try{const r=await fetch(`${CONFIG.SCRIPT_URL}?action=getApplications&token=${CONFIG.ADMIN_PASSWORD}`);S.allApps=(await r.json()).applications||[];renderAppsTable(S.allApps);}catch(e){g('apps-table').innerHTML='<div class="empty-block"><p>Could not load. Check SCRIPT_URL.</p></div>';}}
+function renderAppsTable(apps){
+  const f=S.adminFilter==='all'?apps:apps.filter(a=>a.choices?.some(c=>c.deptKey===S.adminFilter));
+  if(!f.length){g('apps-table').innerHTML='<div class="empty-block"><p>No applications.</p></div>';return;}
+  const ch=(c)=>c?`<div><div class="cc-dept">${DEPTS[c.deptKey]?.short||c.deptKey}</div><div class="cc-sub">${c.subRole||'—'}</div><div class="cc-slot">${c.slotLabel||'—'}</div></div>`:'<span style="color:var(--muted)">—</span>';
+  g('apps-table').innerHTML=`<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>ID</th><th>Name</th><th>Nickname</th><th>Email</th><th>1st</th><th>2nd</th><th>3rd</th><th>Submitted</th><th>Status</th></tr></thead><tbody>${f.map(a=>`<tr><td class="mono">${a.id}</td><td>${a.name}</td><td>${a.nickname}</td><td>${a.email}</td><td>${ch(a.choices?.[0])}</td><td>${ch(a.choices?.[1])}</td><td>${ch(a.choices?.[2])}</td><td style="font-size:0.75rem">${a.submittedAt||'—'}</td><td><span class="badge badge-${a.status||'pending'}">${a.status||'pending'}</span></td></tr>`).join('')}</tbody></table></div>`;
+}
+function filterApps(dept,btn){document.querySelectorAll('.flt-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');S.adminFilter=dept;renderAppsTable(S.allApps);}
+async function loadAdminSlots(){g('slots-content').innerHTML='<div class="loading-block"><div class="spinner"></div><div class="loading-text">Loading…</div></div>';try{const r=await fetch(`${CONFIG.SCRIPT_URL}?action=getAllSlots&token=${CONFIG.ADMIN_PASSWORD}`);renderSlotMgmt((await r.json()).slots||{});}catch(e){g('slots-content').innerHTML='<div class="empty-block"><p>Failed.</p></div>';}}
+// Generates <option> tags for every 30-min slot 09:00 – 21:30 (last slot ends 22:00)
+function slotTimeOpts() {
+  const opts = [];
+  for (let h = 9; h <= 21; h++) {
+    for (let m = 0; m < 60; m += 30) {
+      const hS = String(h).padStart(2,'0'), mS = String(m).padStart(2,'0');
+      const endH = m === 0 ? h : h+1, endM = m === 0 ? 30 : 0;
+      const endStr = `${String(endH).padStart(2,'0')}:${String(endM).padStart(2,'0')}`;
+      opts.push(`<option value="${hS}:${mS}">${hS}:${mS} – ${endStr}</option>`);
+    }
+  }
+  return opts.join('');
+}
+
+function renderSlotMgmt(all){
+  g('slots-content').innerHTML=`<div class="slot-mgmt-grid">${Object.entries(DEPTS).map(([key,dept])=>{
+    const slots=all[key]||[];
+    const list=slots.length?slots.map(s=>{
+      const dt=new Date(s.datetime);
+      const endDt=new Date(dt.getTime()+30*60*1000);
+      const dateStr=dt.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});
+      const startT=dt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      const endT=endDt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+      return `<div class="existing-slot"><div><div>${dateStr}, ${startT} – ${endT}</div><div class="es-cap">${s.booked}/${s.capacity} booked · ${s.available} left</div></div><button class="slot-del" onclick="deleteSlot('${key}','${s.id}')">✕</button></div>`;
+    }).join(''):'<p style="font-size:0.78rem;color:var(--muted);margin-bottom:0.75rem">No slots yet.</p>';
+    return `<div class="slot-mgmt-dept">
+      <div class="smd-title">${dept.label}</div>
+      <div>${list}</div>
+      <div class="add-slot-form">
+        <h4>Add Slot · 30 min · 09:00 – 22:00</h4>
+        <div class="add-slot-row">
+          <input type="date" id="ndate-${key}" min="2026-05-20" max="2026-05-29">
+        </div>
+        <div class="add-slot-row">
+          <select id="ntime-${key}">${slotTimeOpts()}</select>
+        </div>
+        <div class="add-slot-row">
+          <input type="number" id="ncap-${key}" placeholder="Seats (capacity)" min="1" max="30">
+          <button class="btn btn-red btn-sm" onclick="addSlot('${key}')">Add</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('')}</div>`;
+}
+async function addSlot(key){
+  const date=v(`ndate-${key}`), time=v(`ntime-${key}`), cap=v(`ncap-${key}`);
+  if(!date||!time||!cap){toast('Date, time and capacity are all required','error');return;}
+  const datetime=`${date}T${time}`;
+  try{const r=await fetch(CONFIG.SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'addSlot',token:CONFIG.ADMIN_PASSWORD,dept:key,datetime,capacity:parseInt(cap)}),headers:{'Content-Type':'text/plain'}});const d=await r.json();if(d.success){toast('Slot added','success');loadAdminSlots();}else toast(d.error||'Failed','error');}catch(e){toast('Network error','error');}
+}
+async function deleteSlot(key,slotId){if(!confirm('Delete this slot?'))return;try{const r=await fetch(CONFIG.SCRIPT_URL,{method:'POST',body:JSON.stringify({action:'deleteSlot',token:CONFIG.ADMIN_PASSWORD,dept:key,slotId}),headers:{'Content-Type':'text/plain'}});const d=await r.json();if(d.success){toast('Removed','success');loadAdminSlots();}else toast('Failed','error');}catch(e){toast('Network error','error');}}
+function renderRecruiterLinks(){const base=window.location.origin+window.location.pathname;g('recruiter-links').innerHTML=Object.entries(CONFIG.RECRUITER_TOKENS).map(([dept,token])=>{const url=`${base}?view=recruiter&dept=${dept}&key=${token}`;return `<div class="rec-link-card"><div><div class="rlc-title">${DEPTS[dept].label}</div><div class="rlc-url">${url}</div></div><button class="btn btn-ghost btn-sm" onclick="copyLink('${url}',this)">Copy Link</button></div>`;}).join('');}
+function copyLink(url,btn){navigator.clipboard.writeText(url);btn.textContent='Copied!';setTimeout(()=>btn.textContent='Copy Link',2000);}
+
+// ── RECRUITER ──
+async function loadRecruiterView(dept,key){if(!dept||CONFIG.RECRUITER_TOKENS[dept]!==key){g('rec-table').innerHTML='<div class="empty-block"><p style="color:var(--red)">Invalid access link.</p></div>';return;}g('rec-label').textContent='Recruiter View';g('rec-title').textContent=DEPTS[dept]?.label||dept;try{const r=await fetch(`${CONFIG.SCRIPT_URL}?action=getRecruiterView&dept=${dept}&token=${key}`);renderRecruiterTable((await r.json()).applications||[],dept);}catch(e){g('rec-table').innerHTML='<div class="empty-block"><p>Failed to load.</p></div>';}}
+function renderRecruiterTable(apps,dept){if(!apps.length){g('rec-table').innerHTML='<div class="empty-block"><p>No applicants yet.</p></div>';return;}const pi=['🥇','🥈','🥉'];g('rec-table').innerHTML=`<div style="overflow-x:auto"><table class="data-table"><thead><tr><th>ID</th><th>Name</th><th>Nickname</th><th>Email</th><th>Phone</th><th>LINE</th><th>Priority</th><th>Sub-role</th><th>Slot</th><th>Status</th></tr></thead><tbody>${apps.map(a=>{const c=a.choices?.find(c=>c.deptKey===dept);if(!c)return'';return `<tr><td class="mono">${a.id}</td><td>${a.name}</td><td>${a.nickname}</td><td>${a.email}</td><td>${a.phone}</td><td>${a.lineId}</td><td>${pi[c.priority-1]||''} ${['1st','2nd','3rd'][c.priority-1]||''}</td><td style="font-size:0.78rem">${c.subRole}</td><td style="color:var(--red);font-weight:600;font-size:0.82rem">${c.slotLabel||'—'}</td><td><span class="badge badge-${a.status||'pending'}">${a.status||'pending'}</span></td></tr>`;}).join('')}</tbody></table></div>`;}
+
+// ── TOAST ──
+let _tt;
+function toast(msg,type='info'){const el=g('toast');el.textContent=msg;el.className=`toast ${type} show`;clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),4500);}
+
+document.addEventListener('DOMContentLoaded',routeURL);
+</script>
+</body>
+</html>
